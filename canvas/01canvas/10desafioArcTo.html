@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArcTO desafio</title>
+</head>
+
+<body>
+
+  <canvas id="canvas" width="500" height="500" style="border: solid 1px blueviolet"></canvas>
+
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+
+    ctx.beginPath()
+    ctx.moveTo(100, 140)
+    ctx.lineTo(100, 140)
+    ctx.arcTo(150, 250, 500, 200, 50)
+    ctx.lineTo(300, 245)
+    ctx.arcTo(400, 250, 400, 0, 50)
+    ctx.lineTo(390, 150)
+    ctx.arcTo(375, 100, 0, 50, 50)
+    ctx.arcTo(107, 100, 0, 1000, 50)
+    ctx.stroke()
+    ctx.closPath()
+
+  </script>
+
+</body>
+
+</html>

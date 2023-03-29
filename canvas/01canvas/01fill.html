@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+
+  <script type="text/javascript">
+
+    function desenha() {
+
+      let px, py;
+      px = 110;
+      py = 50;
+
+      const canvas = document.getElementById('desenho1');
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = "#00f"
+
+      // desenha posição altura e largura
+      ctx.fillRect(0, 0, 100, 100)
+
+
+      ctx.fillStyle = "rgba(153,0,0,0.5)";
+      ctx.fillRect(px, py, 100, 100)
+
+      // OBS O rect e o fill vai setar para todos ctx.fillStyle que tiver rect
+      ctx.fillStyle = "rgba(153,0,0,1)";
+      ctx.rect(10, 200, 100, 100)
+
+      ctx.fillStyle = "rgba(255,0,0,1)";
+      ctx.rect(150, 200, 100, 100)
+
+
+      ctx.fill()
+
+      // boraxa
+      ctx.clearRect(0, 0, 50, 50)
+    }
+
+
+
+
+
+
+
+
+
+
+  </script>
+
+
+</head>
+
+<body onload="desenha()">
+  <canvas id="desenho1" width='500' height='500' style="border:1px solid black">
+    <p>não suporta canvas</p>
+  </canvas>
+</body>
+
+</html>

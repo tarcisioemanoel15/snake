@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>desafio</title>
+</head>
+
+<body>
+  <img src="" alt="">
+  <canvas id="canvas" width="500" height="500" style="border: solid 1px blueviolet"></canvas>
+
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+
+    let cores = new Image();
+    cores.src = './setas.png';
+
+    let numSprite = 0;
+    let posIniX = 0;
+    let LarguraImg = 0;
+    let tamSprite = 0;
+    let numSpries = 4;
+
+
+    let velocidade = 5;
+    let posX = 0;
+    let posY = 0;
+    let cima = false, baixo = false, esquerda = false, direita = false
+
+
+
+
+
+    cores.onload = () => {
+      larguraSprite = cores.width / numSpries
+      alturaSprite = cores.height / numSpries
+
+      posIniX = larguraSprite * numSprite
+      ctx.drawImage(cores, posIniX, 0, larguraSprite, alturaSprite, posX, posY, larguraSprite, alturaSprite)
+    }
+
+    /*
+    let anima = setInterval(() => {
+      ctx.clearRect(0, 0, 500, 500)
+      numSprite++
+      if (numSprite > 3)
+      numSprite = 0
+      posIniX = larguraSprite * numSprite
+      ctx.drawImage(cores, posIniX, 0, larguraSprite, alturaSprite, posX, posY, larguraSprite, alturaSprite)
+    }, 1000)
+    */
+
+
+    const desenha = () => {
+      ctx.clearRect(0, 0, 500, 500)
+      ctx.drawImage(cores, posIniX, 0, larguraSprite, alturaSprite, posX, posY, larguraSprite, alturaSprite)
+    };
+
+
+    window.addEventListener('keydown', (e) => {
+      if (e.keyCode == 37) {
+        esquerda = true
+      } else if (e.keyCode == 39) {
+        direita = true
+      }
+
+      if (e.keyCode == 38) {
+        cima = true
+      } else if (e.keyCode == 40) {
+        baixo = true
+      }
+
+    })
+
+
+    window.addEventListener('keyup', (e) => {
+      if (e.keyCode == 37) {
+        esquerda = false
+      } else if (e.keyCode == 39) {
+        direita = false
+      }
+
+      if (e.keyCode == 38) {
+        cima = false
+      } else if (e.keyCode == 40) {
+        baixo = false
+      }
+    })
+
+    const game = () => {
+      if (cima) {
+        posY -= velocidade;
+      }
+      if (baixo) {
+        posY += velocidade
+      }
+
+      if (esquerda) {
+        posX -= velocidade
+      }
+      if (direita) {
+        posX += velocidade
+      }
+
+      requestAnimationFrame(game)
+      desenha()
+    }
+
+
+    requestAnimationFrame(game)
+  </script>
+
+</body>
+
+</html>

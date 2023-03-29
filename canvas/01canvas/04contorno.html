@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+</head>
+
+<body>
+  <canvas id="desenho1" width='500' height='500' style="border:1px solid black">
+    <p>não suporta canvas</p>
+  </canvas>
+
+  <script type="text/javascript">
+    const canvas = document.getElementById('desenho1');
+    let ctx = canvas.getContext('2d');
+    let dx = 1, px = 0, py = 10, anima, largRet = altRet = 50, l_canvas = a_canvas = 500;
+    function desenha() {
+      ctx.clearRect(0, 0, l_canvas, a_canvas)
+      ctx.fillStyle = 'red'
+      ctx.fillRect(px, py, largRet, altRet)
+
+      ctx.lineWidth = 3
+      ctx.strokeStyle = '#000';
+      ctx.strokeRect(px, py, largRet, altRet)
+
+      px += dx;
+      // py += dy;
+
+      if ((px + largRet >= l_canvas) || (px <= 0))
+        dx *= -1
+      anima = requestAnimationFrame(desenha)
+    }
+    desenha();
+  </script>
+
+</body>
+
+</html>

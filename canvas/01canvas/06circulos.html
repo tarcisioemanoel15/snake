@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+</head>
+
+<body>
+  <canvas id="desenho1" width='500' height='500' style="border:1px solid black">
+    <p>não suporta canvas</p>
+  </canvas>
+
+  <script type="text/javascript">
+    const canvas = document.getElementById('desenho1');
+    let ctx = canvas.getContext('2d');
+
+    function desenha(params) {
+
+      // posX, posY, radio, angfim, sentido
+
+      ctx.fillStyle = 'red'
+      ctx.arc(100, 100, 100, (Math.PI / 180) * 0, (Math.PI / 180) * 90, false)
+      ctx.fill()
+
+
+      ctx.beginPath()
+      ctx.fillStyle = 'violet'
+      ctx.arc(100, 100, 100, (Math.PI / 180) * 0, (Math.PI / 180) * 90, true)
+
+
+      ctx.fill()
+    }
+
+    desenha();
+
+  </script>
+
+</body>
+
+</html>

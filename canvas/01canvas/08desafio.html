@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas</title>
+</head>
+
+<body>
+  <canvas id="desenho1" width='500' height='500' style="border:1px solid black">
+    <p>não suporta canvas</p>
+  </canvas>
+
+  <script type="text/javascript">
+    const canvas = document.getElementById('desenho1');
+    let ctx = canvas.getContext('2d');
+
+    let tamMax = 40;
+    let tamMin = 10;
+    let maxCirculos = 10;
+    let anima;
+    let angInt = 0;
+    let angFin = 0;
+    let eX = 0
+    let eY = 250;
+    let tamCir = 20;
+    let canvasLeA = 500;
+    let dX = 1;
+    let dY = 0;
+
+    function desenha(params) {
+      ctx.clearRect(0, 0, 500, 500)
+      for (let i = 0; i < maxCirculos; i++) {
+        ctx.beginPath()
+        ctx.fillStyle = 'rgb(' + Math.random() * 255 + ',' + Math.random() * 255 + ',' + Math.random() * 255 + ')';
+        ctx.arc(Math.random() * 500, Math.random() * 500, Math.random() * tamMax + tamMin, (Math.PI / 180) * 0, (Math.PI / 180) * 360, true)
+        ctx.fill()
+      }
+
+      ctx.beginPath()
+      ctx.fillStyle = 'blue';
+      ctx.arc(250, 250, 100, (Math.PI / 180) * angInt, (Math.PI / 180) * angFin, false)
+      ctx.fill()
+
+      if (angFin > 360) {
+        ctx.fillStyle = 'yellow';
+        ctx.arc(250, 250, 100, (Math.PI / 180) * angInt, (Math.PI / 180) * angFin, true)
+        ctx.fill()
+      }
+      angFin++
+
+      ctx.beginPath()
+      ctx.fillStyle = 'red';
+      ctx.arc(eX, eY, tamCir, (Math.PI / 180) * 0, (Math.PI / 180) * 360, true);
+      ctx.fill()
+
+      eX += dX;
+      eY += dY;
+
+      if ((eX + tamCir >= 0) && (eX > canvasLeA)) {
+        dX = -1
+        dY = 0
+      }
+
+      if ((eX + tamCir >= canvasLeA) && (eY >= 1)) {
+        dX = -1
+        dY = 1
+      }
+
+      if ((eY + tamCir >= canvasLeA) && (eX >= 0)) {
+        dX = 0
+        dY = -1
+      }
+
+      if ((eX >= 250) && (eY === 0)) {
+        dX = -1
+        dY = 1
+      }
+
+      if ((eX === 0) && (eY === 250)) {
+        dX = 1
+        dY = 0
+      }
+      anima = requestAnimationFrame(desenha);
+    }
+    desenha();
+  </script>
+</body>
+
+</html>

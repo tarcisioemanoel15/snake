@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArcTO desafio</title>
+</head>
+
+<body>
+  <img src="" alt="" width="300">
+  <canvas id="canvas" width="500" height="500" style="border: solid 1px blueviolet"></canvas>
+
+  <script>
+
+    const canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+    let imagem = new Image();
+    imagem.src = './setas.png';
+
+
+    // posição X e Y 
+    let largura = 0;
+    let altura = 0;
+    // recorte X e Y
+    let larguraRecorte = 100;
+    let alturaRecorte = 100;
+    // posição da imagem
+    let posImgX = 0;
+    let posImgY = 0;
+    // tamanho da imagem
+    let tamX = 100;
+    let tamY = 100;
+
+    // Obetendo quantidade de quadros
+    let numSprite = 4;
+    // se não saber o tamanho da imagem
+    let tamImagem = 0;
+    let numSpritesss = 0;
+
+
+    imagem.addEventListener('load', () => {
+      tamImagem = imagem.width;
+      Largura = tamImagem / numSprite;
+      largura = Largura * numSpritesss;
+      ctx.drawImage(imagem, largura, altura, Largura, alturaRecorte, posImgX, posImgY, tamX, tamY)
+    })
+
+
+    let anima = setInterval(() => {
+
+      numSpritesss++
+
+      if (numSpritesss > 3)
+        numSpritesss = 0
+
+      largura = Largura * numSpritesss
+
+      ctx.drawImage(imagem, largura, altura, Largura, alturaRecorte, posImgX, posImgY, tamX, tamY)
+    }, 100);
+
+
+  </script>
+</body>
+
+</html>

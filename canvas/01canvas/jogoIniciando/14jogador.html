@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>desafio</title>
+</head>
+
+<body>
+  <img src="" alt="">
+  <canvas id="canvas" width="500" height="500" style="border: solid 1px blueviolet"></canvas>
+
+  <script src="./Jogador.js"></script>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+
+
+    const teclado = {
+      cima: false,
+      baixo: false,
+      esquerda: false,
+      direita: false
+    }
+
+
+    const jogador = new Jogador(ctx, teclado);
+
+
+
+    window.addEventListener('keydown', (e) => {
+      if (e.keyCode == 37) {
+        teclado.esquerda = true
+      } else if (e.keyCode == 39) {
+        teclado.direita = true
+      }
+      if (e.keyCode == 38) {
+        teclado.cima = true
+      } else if (e.keyCode == 40) {
+        teclado.baixo = true
+      }
+    })
+
+    window.addEventListener('keyup', (e) => {
+      if (e.keyCode == 37) {
+        teclado.esquerda = false
+      } else if (e.keyCode == 39) {
+        teclado.direita = false
+      }
+      if (e.keyCode == 38) {
+        teclado.cima = false
+      } else if (e.keyCode == 40) {
+        teclado.baixo = false
+      }
+    })
+
+    const game = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      jogador.desenhar();
+      requestAnimationFrame(game)
+
+    }
+
+    requestAnimationFrame(game)
+  </script>
+
+</body>
+
+</html>

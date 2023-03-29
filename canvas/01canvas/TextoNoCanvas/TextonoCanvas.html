@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Texto no Canvas</title>
+</head>
+
+<body>
+  <canvas id="canvas" width="500" height="500" style="border: solid 1px chartreuse;"></canvas>
+
+  <script>
+    const canvas = document.getElementById('canvas')
+    let ctx = canvas.getContext('2d');
+
+    ctx.font = '30px arial'
+    ctx.fillStyle = '#008'
+    ctx.strokeText('CFB Cursos', 10, 100)
+
+    ctx.fillText('Cursos', 10, 300)
+
+
+
+  </script>
+
+</body>
+
+</html>
