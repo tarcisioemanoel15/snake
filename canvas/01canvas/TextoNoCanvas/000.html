@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pratca</title>
+
+  <style>
+    #canvas {
+      margin-top: 50px;
+    }
+
+    .ponta {
+      width: 20px;
+      height: 20px;
+      background-color: rgb(255, 0, 149);
+
+      position: absolute;
+      left: 225px;
+      top: 150px;
+    }
+
+    .canvas {
+      width: 200px;
+      height: 50px;
+
+      border: solid 5px red;
+      margin-top: 50px;
+    }
+
+    .ponta1 {
+      width: 10px;
+      height: 20px;
+      background-color: red;
+      margin-left: 210px;
+      margin-top: -45px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <canvas width="400" height="50" style="border: solid 5px black">
+    <p>tete</p>
+  </canvas>
+  <div>
+    <canvas id="canvas" width="200" height="50" style="border: solid 10px rgb(255, 0, 149)"></canvas>
+  </div>
+
+  <div>
+    <canvas class="canvas"></canvas>
+  </div>
+  <div class="ponta1"></div>
+
+  <div class="ponta"></div>
+  <script>
+    function primeira() {
+      const canvas = document.querySelector('canvas')
+      const ctx = canvas.getContext('2d')
+      let d = 1, anima, larguraRet = alturaRet = 50, l_Canvas = a_Canvas = 400;
+      let x = 0, y = 0, x1 = 100, y1 = 0, x2 = 200, y2 = 0, x3 = 300, y3 = 0, x4 = 400, y4 = 0;
+      function desenha() {
+        ctx.clearRect(0, 0, l_Canvas, a_Canvas)
+        ctx.fillRect(x, y, larguraRet, alturaRet)
+        ctx.fillRect(x1, y1, larguraRet, alturaRet)
+        ctx.fillRect(x2, y2, larguraRet, alturaRet)
+        ctx.fillRect(x3, y3, larguraRet, alturaRet)
+        ctx.fillRect(x4, y4, larguraRet, alturaRet)
+        if (x >= l_Canvas) {
+          x = 0
+        }
+        if (x1 >= l_Canvas) {
+          x1 = 0
+        }
+        if (x2 >= l_Canvas) {
+          x2 = 0
+        }
+        if (x3 > l_Canvas) {
+          x3 = 0
+        }
+        if (x4 >= l_Canvas) {
+          x4 = 0
+        }
+        x4 += d
+        x3 += d
+        x2 += d
+        x1 += d
+        x += d
+        anima = requestAnimationFrame(desenha)
+      }
+      desenha();
+    }
+    function segunda() {
+      const canvas = document.getElementById('canvas')
+      const ctx = canvas.getContext('2d')
+
+      let pi = 1, px = 0, py = 0, anima, larCanvas = 200;
+
+      function desenha() {
+        ctx.fillRect(px, py, 50, 50)
+
+
+        if (px >= larCanvas) {
+          px = 0
+          ctx.clearRect(0, 0, 200, 200)
+        }
+
+        px += pi
+        anima = requestAnimationFrame(desenha)
+      }
+      desenha();
+    }
+
+    function terceira() {
+
+
+      const canvas = document.querySelector('.canvas');
+      let ctx = canvas.getContext('2d');
+
+
+      let px = 0, py = 0, wquadro = 100, hquadro = 200, anima;
+      let d = 1
+
+
+      function desenha() {
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+        ctx.fillRect(px, py, wquadro, hquadro)
+
+        if (px >= 200) {
+          d = -1
+        }
+
+        if (px === 0) {
+          d = 1
+        }
+
+        px += d
+        anima = requestAnimationFrame(desenha)
+      }
+
+      desenha()
+    }
+
+
+    primeira()
+    segunda()
+    terceira()
+  </script>
+
+</body>
+
+</html>

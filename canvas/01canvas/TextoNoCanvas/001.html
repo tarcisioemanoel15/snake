@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>canvas</title>
+</head>
+
+<body>
+  <canvas width="400" height="400" style="border: solid 5px black;"></canvas>
+
+  <script>
+    const canvas = document.querySelector('canvas');
+    let ctx = canvas.getContext('2d');
+
+    let dx = 1, dy = 0, x = 1, y = 0, anima, asCanvas = 400, ql = 50;
+    function desenha() {
+
+      ctx.rect(x, y, ql, ql)
+      ctx.fill()
+      if ((x + ql >= asCanvas) && (y === 0)) {
+        dx = 0
+        dy = 1
+      }
+      if ((x + ql >= asCanvas) && (y + ql === 400)) {
+        dx = -1
+        dy = 0
+      }
+      if ((x === 0) && (y + ql === 400)) {
+        dx = 0
+        dy = -1
+      }
+      if ((x === 0) && (y === 0)) {
+        ctx.clearRect(0, 0, 400, 400);
+        dx = 1
+        dy = 0
+        ctx.beginPath()
+      }
+
+      x += dx
+      y += dy
+      anima = requestAnimationFrame(desenha)
+    }
+
+    let poX = poY = 400, tamX = tamY = 50, quantidade = 10, angulo = 0;
+    function desenha1() {
+      function mov() {
+        ctx.clearRect(0, 0, 400, 400)
+        for (let i = 0; i < quantidade; i++) {
+          ctx.rect(Math.random() * 400, Math.random() * 400, Math.random() * 10, Math.random() * 10)
+        }
+        ctx.fill()
+        anima = requestAnimationFrame(desenha1)
+      }
+      mov()
+    }
+
+    desenha()
+    desenha1()
+  </script>
+</body>
+
+</html>
